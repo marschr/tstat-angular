@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style type="text/css">
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background: #60dcc6;
+    background: linear-gradient(0deg, #60dcc6 0%,#35a4a9 100%) no-repeat center center fixed;
+
+  }
+
+  .app-content {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  }
+
+  .temp{
+    margin: 0;
+    padding: 0;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 300px;
+  }
+  .temp p {
+    background-color: red;
+  }
+
+  .temp p#tempval{
+    background-color: blue;
+    font-size: 3.125em;
+    /*need to check display pixel density*/
+  }
+
+  .temp p#tempunit{
+    background-color: lightblue;
+  }
+
+  .knob {
+    width: 200px;
+    height: 200px;
+  }
+
+  .modes{
+    color: white;
+    background-color: green;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    text-align: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .modes li {
+    width: 100px;
+    height: 30px;
+
+
+    background: linear-gradient(45deg, #505050 0%,#808080 100%);
+  }
+
+  .timer {    
+    color: #35a4a9;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    text-align: center;
+  }
+  .timer li {
+
+    width: 100px;
+    height: 30px;
+
+    background: linear-gradient(45deg, #60dcc6 0%,#35a4a9 100%);
+  }
+
+</style>
+<body>
+
+  <div ng-app="tstat" ng-controller="tstatctrl" class="app-content">
+    <div class="temp" id="temp">
+      <p id="tempval">{{temp}}</p>
+      <p id="tempunit">{{tempunit}}</p>
+    </div>
+    <div>
+      <ul class="modes">
+        <li ng-repeat="x in modes" >
+          {{x}}
+        </li>
+      </ul>
+    </div>
+    <div>
+     <ul class="timer">
+      <li ng-repeat="x in timer">
+        {{ x }}
+      </li>
+    </ul>
+    <p>minutes</p>
+  </div>
+
+</div>
+
+<script>
+
+  function interactions() {
+    var el = document.getElementsById('temp');
+    el.addEventListener("touchstart", handleStart, false);
+    el.addEventListener("touchend", handleEnd, false);
+    el.addEventListener("touchcancel", handleCancel, false);
+    el.addEventListener("touchmove", handleMove, false);
+  }
+
+  var app = angular.module("tstat", []);
+
+  app.controller("tstatctrl", function($scope) {
+    $scope.temp = "22";
+    $scope.tempunit = "C";
+    $scope.timer=[5,10,15,20,25,30,45,60,90,120];
+    $scope.modes=["off","fan","cool","heat"];
+  });
+
+</script>
+
+</body>
+</html>
