@@ -1,1 +1,1 @@
-tstat-angular
+Thermostat app implementation using AngularJS for the frontend and backend done with NodeJS.
