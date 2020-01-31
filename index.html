@@ -1,20 +1,62 @@
 <!DOCTYPE html>
 <html>
+<meta charset="UTF-8"> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="HandheldFriendly" content="true" />
+<!-- android -->
+<meta name="mobile-web-app-capable" content="yes">
+<!-- iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="translucent-black">
+<meta name="apple-mobile-web-app-title" content="Tstat">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <style type="text/css">
+
+	@media only screen and (min-width: 500px) {
+		html {
+			background: #bfbfbf;
+			background: linear-gradient(180deg, rgba(198,198,198,1) 0, rgba(234,234,234,1) 100%)  no-repeat center center fixed;
+		}
+		.app-content{
+			width: 400px;
+			height: 800px;
+		}
+	}
+
+	@media only screen and (max-width: 500px) {
+		html {
+			background: #bfbfbf;
+			background: linear-gradient(180deg, rgba(198,198,198,1) 0, rgba(234,234,234,1) 100%)  no-repeat center center fixed;
+		}
+
+		.app-content{
+			width: 100%;
+			height: 100%;
+		}
+
+	}
+
 
 	* {
 		margin: 0;
 		padding: 0;
+		scrollbar-width: none;
+		overflow: -moz-scrollbars-none;
+		-ms-overflow-style: none;
+		box-sizing: border-box;
+	}
+	*::-webkit-scrollbar {
+		display: none;
 	}
 
 	html {
-		background: #bfbfbf;
-		background: linear-gradient(180deg, rgba(198,198,198,1) 0, rgba(234,234,234,1) 100%)  no-repeat center center fixed;
+		height: 100%;
+		overflow: hidden;
 	}
 
 	.app-container {
-		background-color: transparent;
+		/*background-color: transparent;*/
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -27,16 +69,15 @@
 	}
 
 	.app-content {
-		background-color: transparent;
+		/*background-color: transparent;*/
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-		width: 450px;
-		height: 800px;
+
 		background: linear-gradient(0deg, #60dcc6 0%,#35a4a9 100%) no-repeat center center fixed;
-		overflow: hidden;
+		/*overflow: hidden;*/
 		box-shadow: 0 0 50px -5px rgba(0,0,0,0.4) ;
 
 
@@ -73,100 +114,142 @@
 
 	.modes{
 		margin: 0;
-	}
 
-	.mode-picker {
-		display: flex;
-		flex-direction: row;
-		list-style-type: none;
-		text-align: center;
-		flex-wrap: nowrap;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.modes li {
-
-		color: white;
-		width: 100px;
-		line-height: 40px;
-
-		font-size: 1.5em;
-
-		font-weight:lighter;
-
-
-		/*background: linear-gradient(45deg, #505050 0%,#808080 100%);*/
-	}
-
-	.timer {
-
-/*		display: flex;
-		justify-content: center;
-		align-items: center;*/
-		overflow: scroll;
-
-		margin: auto 0 10px 0;
-
+		width: inherit;
 
 	}
 
-	#turnon {
-		font-size: 1em;
-		font-weight:lighter;
-		text-align: center;
-		color: white;
-		margin: 5px;
+	
+	.mode-picker { /*same as modes ul{}*/
+	font-size: 1.5em;
+	display: flex;
+	flex-direction: row;
+	list-style-type: none;
+	overflow: scroll;
+}
 
-	}
 
-	.timer-picker {    
-		display: flex;
-		flex-direction: row;
-		list-style-type: none;
-		background-color:		rgba(0, 0, 0, 0);
-		background-position-x: center;
-		background-position-y: top;
-		background-repeat: no-repeat;
-		background-attachment: scroll;
-		background-image: url("bkgnd.svg");
-		background-size: auto;
-		background-origin: padding-box;
-		background-clip: border-box;
+.mode-picker li {
+	font-size: 1em;
+	line-height: 40px;
+	text-align: center;
+	vertical-align: middle;
 
-		/*background-color: white;*/
-		color: #35a4a9;
-		box-shadow: 0 -10px 10px -10px rgba(0,0,0,0.3) inset;
+	/*debug gradient bkgnd*/
+	/*background: linear-gradient(45deg, #505050 0%,#808080 100%);*/
+}
 
-	}
-	.timer-picker li {
-		width: 100px;
-		line-height: 50px;
-		text-align: center;
-		vertical-align: middle;
-		/*background: linear-gradient(45deg, #60dcc6 0%,#35a4a9 100%);*/
-	}
+.mode-picker-item {
+	color: white;
+	min-width: 100px;
+	text-align: center;
+	font-weight: lighter;
+}
 
-	#minutes {
-		font-size: 1em;
-		font-weight:lighter;
-		text-align: center;
-		color: white;
-		margin: 5px;
-	}
 
-	.scheduler{
-		color: white;
-		margin:10px 0 10px 0;
-	}
-	.settings{
-		color: white;
-		margin:10px 0 10px 0;
-	}
+
+.mode-picker-heading,
+.mode-picker-ending{
+	/*width should be half app width (450/2) less half the picker items width (100/2)*/
+	width: 175px;
+	min-width: 175px;
+}
+
+.timer {
+	width: inherit;
+	margin: auto 0 0 0;
+	background: rgba(255,255,255,0.1);
+}
+
+.timer-picker-container {
+	background-color: rgba(0, 0, 0, 0);
+	background-position-x: center;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	background-attachment:  scroll;
+	background-image: url("bkgnd.svg");
+	background-size: auto;
+	background-origin: padding-box;
+	background-clip: border-box;
+}
+
+#turnon {
+	font-size: 1em;
+	font-weight:lighter;
+	text-align: center;
+	color: white;
+	margin: 5px;
+
+}
+
+.timer-picker-container ul {
+	font-size: 1.5em;
+	display: flex;
+	flex-direction: row;
+	list-style-type: none;
+	overflow: scroll;
+	/*background-color: white;*/
+	color: #35a4a9;
+	box-shadow: 0 -10px 10px -10px rgba(0,0,0,0.3) inset;
+
+}
+.timer-picker-item{
+	min-width: 20%;
+	line-height: 70px;
+	text-align: center;
+	vertical-align: middle;
+	/*background: linear-gradient(45deg, #60dcc6 0%,#35a4a9 100%);*/
+}
+
+.timer-picker-heading,
+.timer-picker-ending{
+	/*width should be half app width (450/2) less half the picker items width (80/2)*/
+	/*min-width: 185px;*/
+
+	/*or... 40% here and 20% on each item */
+	min-width: 40%;
+}
+
+#minutes {
+	font-size: 1em;
+	font-weight:lighter;
+	text-align: center;
+	color: white;
+	margin: 5px;
+}
+
+.timer p{
+	color: white;
+	margin:10px 0 10px 0;
+	text-align: center;
+}
+
+.scheduler {
+	background: rgba(255,255,255,0.25);		
+	width: inherit;		
+	align-items: center;
+}
+
+.scheduler p{
+	color: white;
+	margin:10px 0 10px 0;
+	text-align: center;
+}
+
+.settings {
+	background: rgba(255,255,255,0.45);
+	width: inherit;
+}
+
+.settings p{
+	color: white;
+	margin:10px 0 10px 0;
+	text-align: center;
+}
 
 
 </style>
-<body>
+<body scroll="no" style="overflow: hidden">
 	<div class="app-container">
 		<div ng-app="tstat" ng-controller="tstatctrl" class="app-content">
 			<div class="temp" id="temp">
@@ -174,19 +257,26 @@
 				<p id="tempunit">{{tempunit}}</p>
 			</div>
 			<div class="modes">
-				<ul class="mode-picker">
-					<li ng-repeat="x in modes" >
+				<ul class="mode-picker" id="mode-picker">
+					<li class="mode-picker-heading"></li>
+					<li class="mode-picker-item" ng-repeat="x in modes" >
 						{{x}}
 					</li>
+					<li class="mode-picker-ending"></li>
 				</ul>
 			</div>
 			<div class="timer">
+				<p>TIMER</p>
 				<p id="turnon">{{localization().turnonin}}</p>
-				<ul class="timer-picker">
-					<li ng-repeat="x in timer">
-						{{ x }}
-					</li>
-				</ul>
+				<div class="timer-picker-container">
+					<ul id="timer-picker">
+						<li class="timer-picker-heading"></li>
+						<li class="timer-picker-item" ng-repeat="x in timer">
+							{{ x }}
+						</li>
+						<li class="timer-picker-ending"></li>
+					</ul>
+				</div>				
 				<p id="minutes">{{localization().minutes}}</p>
 			</div>
 			<div class="scheduler">
@@ -198,17 +288,7 @@
 		</div>
 	</div>
 
-	<script>
-
-
-		function interactions() {
-			var el = document.getElementsById('temp');
-			el.addEventListener("touchstart", handleStart, false);
-			el.addEventListener("touchend", handleEnd, false);
-			el.addEventListener("touchcancel", handleCancel, false);
-			el.addEventListener("touchmove", handleMove, false);
-		}
-
+	<script type="text/javascript">
 		var app = angular.module("tstat", []);
 
 		app.controller("tstatctrl", function($scope) {
