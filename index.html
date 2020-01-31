@@ -289,6 +289,74 @@
 	</div>
 
 	<script type="text/javascript">
+
+		let el =  document.getElementById("timer-picker");
+		el.addEventListener('mousedown', onMouseDown);
+		el.addEventListener('mousemove', onMouseMove);
+		el.addEventListener('mouseup', onMouseUp);
+
+		let initialX = 0;
+		let deltaX = 0;
+		let mousedown = false;
+
+		el.addEventListener("wheel", onMouseWHeel);
+
+		let scrollToX = 0;
+
+		function onMouseDown(e) {
+			mousedown = true;
+			initialX = e.clientX;
+			console.log(e);
+			console.log("x:" + e.clientX + " y:" + e.clientY);
+			console.log("mousedown");
+
+			//find the the Y center of the interacted widget
+			rectEl = el.getBoundingClientRect();
+			elYcenter = rectEl.top + rectEl.height/2;
+			//get pre-selected element (the one in the middle)
+			var element = document.elementFromPoint(window.innerWidth/2,elYcenter);
+			console.log(element);
+			console.log("ChildIndex: ")
+			// var children = el.childNodes;
+			childIndex = Array.prototype.indexOf.call(el.children, element);
+			console.log(childIndex);
+
+			//calculate the scroll to center the element
+			scrollToX = element.getBoundingClientRect().width*(childIndex-1);
+		}
+
+		function onMouseMove(e) {
+			if (mousedown) {
+				deltaX = initialX - e.clientX;
+				console.log("dX: " + deltaX);
+
+				//need to get initial scroll position
+				// el.scrollTo(deltaX,0);
+			}
+		}
+
+		function onMouseUp(e) {
+			mousedown = false;
+
+			el.scrollTo(scrollToX,0);
+			// el.scrollTo(80,0);
+			springBackToCenter(e.clientX);
+		}
+
+		function springBackToCenter(xVal) {
+			console.log("xVal: " + xVal)
+		}
+
+		function onMouseWHeel(e) {
+			// el.scrollTo(80,0);
+			// console.log("dY: " + e.deltaY);
+			// console.log("dX: " + e.deltaX);
+		}
+
+	</script>
+
+
+	<script type="text/javascript">
 		var app = angular.module("tstat", []);
 
 		app.controller("tstatctrl", function($scope) {
