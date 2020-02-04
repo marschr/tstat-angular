@@ -13,17 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <style type="text/css">
 
-	@media only screen and (min-width: 500px) {
-		html {
-			background: #bfbfbf;
-			background: linear-gradient(180deg, rgba(198,198,198,1) 0, rgba(234,234,234,1) 100%)  no-repeat center center fixed;
-		}
-		.app-content{
-			width: 400px;
-			height: 800px;
-		}
-	}
-
+	/* up to 500px wide (mobile devices), scale the app to fit the browser window */
 	@media only screen and (max-width: 500px) {
 		html {
 			background: #bfbfbf;
@@ -37,7 +27,19 @@
 
 	}
 
+	/* from 500px and up (desktops), let the app center itself and adjust it's size */
+	@media only screen and (min-width: 500px) {
+		html {
+			background: #bfbfbf;
+			background: linear-gradient(180deg, rgba(198,198,198,1) 0, rgba(234,234,234,1) 100%)  no-repeat center center fixed;
+		}
+		.app-content{
+			width: 400px;
+			height: 800px;
+		}
+	}
 
+	/* reset default paddings and hide scroll bars */
 	* {
 		margin: 0;
 		padding: 0;
@@ -100,7 +102,6 @@
 	#tempval{
 		font-size: 5em;
 		color: white;
-		/*need to check display pixel density*/
 	}
 
 	#tempunit{
@@ -119,133 +120,130 @@
 
 	}
 
-	
-	.mode-picker { /*same as modes ul{}*/
-	font-size: 1.5em;
-	display: flex;
-	flex-direction: row;
-	list-style-type: none;
-	overflow: scroll;
-}
+	/*same as modes ul{}*/
+	.mode-picker { 
+		font-size: 1.5em;
+		display: flex;
+		flex-direction: row;
+		list-style-type: none;
+		overflow: scroll;
+	}
 
 
-.mode-picker li {
-	font-size: 1em;
-	line-height: 40px;
-	text-align: center;
-	vertical-align: middle;
+	.mode-picker li {
+		font-size: 1em;
+		line-height: 40px;
+		text-align: center;
+		vertical-align: middle;
 
-	/*debug gradient bkgnd*/
-	/*background: linear-gradient(45deg, #505050 0%,#808080 100%);*/
-}
+		/*debug gradient bkgnd*/
+		/*background: linear-gradient(45deg, #505050 0%,#808080 100%);*/
+	}
 
-.mode-picker-item {
-	color: white;
-	min-width: 100px;
-	text-align: center;
-	font-weight: lighter;
-}
+	.mode-picker-item {
+		color: white;
+		min-width: 100px;
+		text-align: center;
+		font-weight: lighter;
+	}
 
 
 
-.mode-picker-heading,
-.mode-picker-ending{
-	/*width should be half app width (450/2) less half the picker items width (100/2)*/
-	width: 175px;
-	min-width: 175px;
-}
+	.mode-picker-heading,
+	.mode-picker-ending{
+		/*width should be half app width (450/2) less half the picker items width (100/2)*/
+		width: 175px;
+		min-width: 175px;
+	}
 
-.timer {
-	width: inherit;
-	margin: auto 0 0 0;
-	background: rgba(255,255,255,0.1);
-}
+	.timer {
+		width: inherit;
+		margin: auto 0 0 0;
+		background: rgba(255,255,255,0.1);
+	}
 
-.timer-picker-container {
-	background-color: rgba(0, 0, 0, 0);
-	background-position-x: center;
-	background-position-y: top;
-	background-repeat: no-repeat;
-	background-attachment:  scroll;
-	background-image: url("bkgnd.svg");
-	background-size: auto;
-	background-origin: padding-box;
-	background-clip: border-box;
-}
+	.timer-picker-container {
+		background-color: rgba(0, 0, 0, 0);
+		background-position-x: center;
+		background-position-y: top;
+		background-repeat: no-repeat;
+		background-attachment:  scroll;
+		background-image: url("bkgnd.svg");
+		background-size: auto;
+		background-origin: padding-box;
+		background-clip: border-box;
+	}
 
-#turnon {
-	font-size: 1em;
-	font-weight:lighter;
-	text-align: center;
-	color: white;
-	margin: 5px;
+	#turnon {
+		font-size: 1em;
+		font-weight:lighter;
+		text-align: center;
+		color: white;
+		margin: 5px;
 
-}
+	}
 
-.timer-picker-container ul {
-	font-size: 1.5em;
-	display: flex;
-	flex-direction: row;
-	list-style-type: none;
-	overflow: scroll;
-	/*background-color: white;*/
-	color: #35a4a9;
-	box-shadow: 0 -10px 10px -10px rgba(0,0,0,0.3) inset;
+	.timer-picker-container ul {
+		font-size: 1.5em;
+		display: flex;
+		flex-direction: row;
+		list-style-type: none;
+		overflow: scroll;
+		/*background-color: white;*/
+		color: #35a4a9;
+		box-shadow: 0 -10px 10px -10px rgba(0,0,0,0.3) inset;
 
-}
-.timer-picker-item{
-	min-width: 20%;
-	line-height: 70px;
-	text-align: center;
-	vertical-align: middle;
-	/*background: linear-gradient(45deg, #60dcc6 0%,#35a4a9 100%);*/
-}
+	}
+	.timer-picker-item{
+		min-width: 20%;
+		line-height: 70px;
+		text-align: center;
+		vertical-align: middle;
+		/*background: linear-gradient(45deg, #60dcc6 0%,#35a4a9 100%);*/
+	}
 
-.timer-picker-heading,
-.timer-picker-ending{
-	/*width should be half app width (450/2) less half the picker items width (80/2)*/
-	/*min-width: 185px;*/
+	.timer-picker-heading,
+	.timer-picker-ending{
+		/* width must be 40% here and 20% on each item to keep initial element always centered*/
+		min-width: 40%;
+	}
 
-	/*or... 40% here and 20% on each item */
-	min-width: 40%;
-}
+	#minutes {
+		font-size: 1em;
+		font-weight:lighter;
+		text-align: center;
+		color: white;
+		margin: 5px;
+	}
 
-#minutes {
-	font-size: 1em;
-	font-weight:lighter;
-	text-align: center;
-	color: white;
-	margin: 5px;
-}
+	.timer p{
+		color: white;
+		margin:10px 0 10px 0;
+		text-align: center;
+	}
 
-.timer p{
-	color: white;
-	margin:10px 0 10px 0;
-	text-align: center;
-}
+	.scheduler {
+		background: rgba(255,255,255,0.25);		
+		width: inherit;		
+		align-items: center;
+	}
 
-.scheduler {
-	background: rgba(255,255,255,0.25);		
-	width: inherit;		
-	align-items: center;
-}
+	.scheduler p{
+		color: white;
+		margin:10px 0 10px 0;
+		text-align: center;
+	}
 
-.scheduler p{
-	color: white;
-	margin:10px 0 10px 0;
-	text-align: center;
-}
+	.settings {
+		background: rgba(255,255,255,0.45);
+		width: inherit;
+	}
 
-.settings {
-	background: rgba(255,255,255,0.45);
-	width: inherit;
-}
-
-.settings p{
-	color: white;
-	margin:10px 0 10px 0;
-	text-align: center;
-}
+	.settings p{
+		color: white;
+		margin:10px 0 10px 0;
+		text-align: center;
+	}
 
 
 </style>
@@ -290,67 +288,98 @@
 
 	<script type="text/javascript">
 
-		let el =  document.getElementById("timer-picker");
-		el.addEventListener('mousedown', onMouseDown);
-		el.addEventListener('mousemove', onMouseMove);
-		el.addEventListener('mouseup', onMouseUp);
+		//TODO: mouse wheel events
+		//TODO: mousewheel + touchpad tests
+		//TODO: touchscreen support
 
-		let initialX = 0;
-		let deltaX = 0;
+		//Set event listner on "time-picker"
+		let parentEl =  document.getElementById("timer-picker");
+		parentEl.addEventListener('mousedown', onMouseDown);
+		parentEl.addEventListener('mousemove', onMouseMove);
+		parentEl.addEventListener('mouseup', onMouseUp);
+
+		//init variables
+		let mouseDownPosX = 0;
+		let mouseDownScrollX = 0;
+		let mouseUpScrollToX = 0;
 		let mousedown = false;
+		let mouseMoveDeltaX = 0;
 
-		el.addEventListener("wheel", onMouseWHeel);
-
-		let scrollToX = 0;
 
 		function onMouseDown(e) {
+			//WIP stuff, remove on production
+			console.log("onMouseDown()!");			
+			console.log("eventX:" + e.clientX + " eventY:" + e.clientY);
 			mousedown = true;
-			initialX = e.clientX;
+
+			//get the initial X position
+			mouseDownPosX = e.clientX;
 			console.log(e);
-			console.log("x:" + e.clientX + " y:" + e.clientY);
-			console.log("mousedown");
 
-			//find the the Y center of the interacted widget
-			rectEl = el.getBoundingClientRect();
-			elYcenter = rectEl.top + rectEl.height/2;
-			//get pre-selected element (the one in the middle)
-			var element = document.elementFromPoint(window.innerWidth/2,elYcenter);
-			console.log(element);
-			console.log("ChildIndex: ")
-			// var children = el.childNodes;
-			childIndex = Array.prototype.indexOf.call(el.children, element);
-			console.log(childIndex);
-
-			//calculate the scroll to center the element
-			scrollToX = element.getBoundingClientRect().width*(childIndex-1);
+			//get X scroll state when mouseDown
+			console.log("mouseDownScrollX: " + parentEl.scrollLeft);
+			mouseDownScrollX = parentEl.scrollLeft;
 		}
 
 		function onMouseMove(e) {
 			if (mousedown) {
-				deltaX = initialX - e.clientX;
-				console.log("dX: " + deltaX);
+				//find mouse movement delta X
+				mouseMoveDeltaX = mouseDownPosX - e.clientX;
 
-				//need to get initial scroll position
-				// el.scrollTo(deltaX,0);
+				//WIP stuff, remove on production
+				console.log("dX: " + mouseMoveDeltaX);
+
+				//scroll accordingly
+				parentEl.scrollTo(mouseDownScrollX + mouseMoveDeltaX,0);
+			}
+		}
+
+		//Linear interpolator for animation values
+		var lerpPosition = 0;
+		function lerp(initPos,finalPos) {
+			console.log("lerp delta: "+(finalPos - initPos));
+			lerpPosition += (finalPos - initPos) * 0.2;
+			console.log("lerp position: " + lerpPosition);
+			parentEl.scrollTo(initLeftScroll + lerpPosition,0);
+		}
+
+		let anim1;
+		let initLeftScroll = 0;
+		let finalLeftScroll = 0;
+
+
+		function animateLerpScroll() {
+			lerp(initLeftScroll,finalLeftScroll);
+			anim1 = requestAnimationFrame(animateLerpScroll);
+
+			//if lerp scrolling is finished, cancel out requestAnimationFrame
+			if (Math.round(lerpPosition) == (finalLeftScroll - initLeftScroll))  {
+				cancelAnimationFrame(anim1);
+				lerpPosition = 0;
+				initLeftScroll = 0;
+				finalLeftScroll = 0;
+				anim1 = undefined;
 			}
 		}
 
 		function onMouseUp(e) {
+			//WIP stuff, remove on production
+			console.log("onMouseUp()!");
+			console.log("eventX:" + e.clientX + " eventY:" + e.clientY);
 			mousedown = false;
 
-			el.scrollTo(scrollToX,0);
-			// el.scrollTo(80,0);
-			springBackToCenter(e.clientX);
-		}
-
-		function springBackToCenter(xVal) {
-			console.log("xVal: " + xVal)
-		}
-
-		function onMouseWHeel(e) {
-			// el.scrollTo(80,0);
-			// console.log("dY: " + e.deltaY);
-			// console.log("dX: " + e.deltaX);
+			//find the the vertical center of the interacted widget
+			rectEl = parentEl.getBoundingClientRect();
+			elYcenter = rectEl.top + rectEl.height/2;
+			//get pre-selected element (the one in the center of the picker)
+			let centerElement = document.elementFromPoint(window.innerWidth/2,elYcenter);
+			// find which child centerElement is it
+			childIndex = Array.prototype.indexOf.call(parentEl.children, centerElement);
+			//calculate the scroll to center the centerElement
+			mouseUpScrollToX = centerElement.getBoundingClientRect().width*(childIndex-1);
+			initLeftScroll = mouseDownScrollX + mouseMoveDeltaX;
+			finalLeftScroll = mouseUpScrollToX;
+			animateLerpScroll();
 		}
 
 	</script>
@@ -359,6 +388,7 @@
 	<script type="text/javascript">
 		var app = angular.module("tstat", []);
 
+		//App angular controller init
 		app.controller("tstatctrl", function($scope) {
 			$scope.lang = "en";
 
@@ -366,13 +396,7 @@
 				return $scope.locales[$scope.lang];
 			}
 
-			// $scope.localization = function () {
-			// 	return "turononin";
-			// }
-			// $scope.localization = {"pt":"turnonindsdin"};
-			// $scope.localization = function () {
-			// 	return string-turnonin
-			// }
+			//App localization in portuguese and english
 			$scope.locales = {
 				"pt": {
 					"turnonin": "ligar em...",
